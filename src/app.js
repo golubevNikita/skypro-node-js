@@ -12,7 +12,7 @@ const server = http.createServer((request, response) => {
   const userNameParameter = url.searchParams.get("hello");
 
   if (request.url === "/") {
-    response.status = 200;
+    response.statusCode = 200;
     response.statusMessage = "OK";
     response.header = "Content-Type: text/plain";
     response.write("Hello, world");
@@ -22,7 +22,7 @@ const server = http.createServer((request, response) => {
   }
 
   if (usersParameter === "") {
-    response.status = 200;
+    response.statusCode = 200;
     response.statusMessage = "OK";
     response.header = "Content-Type: application/json";
     response.write(getUsers());
@@ -32,7 +32,7 @@ const server = http.createServer((request, response) => {
   }
 
   if (userNameParameter === "") {
-    response.status = 400;
+    response.statusCode = 400;
     response.statusMessage = "FALSE";
     response.header = "Content-Type: text/plain";
     response.write("Enter a name");
@@ -47,7 +47,7 @@ const server = http.createServer((request, response) => {
     );
 
     if (searchedUser.length) {
-      response.status = 200;
+      response.statusCode = 200;
       response.statusMessage = "OK";
 
       const searchedIdOrIds = searchedUser.map((user) => user.id);
@@ -66,7 +66,7 @@ const server = http.createServer((request, response) => {
 
       return;
     } else {
-      response.status = 400;
+      response.statusCode = 400;
       response.statusMessage = "FALSE";
       response.header = "Content-Type: text/plain";
       response.write("Name is not exist");
@@ -75,7 +75,7 @@ const server = http.createServer((request, response) => {
       return;
     }
   } else {
-    response.status = 500;
+    response.statusCode = 500;
     response.statusMessage = "FALSE";
     response.header = "Content-Type: text/plain";
     response.write("");
