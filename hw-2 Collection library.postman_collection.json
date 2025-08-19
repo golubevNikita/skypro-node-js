@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "5a8cbf42-dc76-4946-81f0-659ff53a1d75",
-		"name": "hw-3 Collection library",
+		"name": "hw-2 Collection library",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "41557120"
 	},
@@ -202,6 +202,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Иван\",\r\n    \"surname\": \"Иванов\",\r\n    \"email\": \"ivan@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{api_url}}/visitors/new-member",
 					"host": [
@@ -275,6 +284,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"1984\",\r\n    \"author\": \"George Orwell\",\r\n    \"year\": 1949\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{api_url}}/books/new-item",
 					"host": [
