@@ -1,0 +1,613 @@
+{
+	"info": {
+		"_postman_id": "4bd4de8a-12da-4143-9fcf-395e524e0a48",
+		"name": "express-js+MongoDB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41557120"
+	},
+	"item": [
+		{
+			"name": "Получить список всех посетителей",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/visitors",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"visitors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получить список всех книг",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/books",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Просмотреть данные посетителя по его id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response contains the object with required fields\", function() {\r",
+							"    const visitor = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(visitor).to.have.all.keys(\r",
+							"        '_id',\r",
+							"        'name',\r",
+							"        'surname',\r",
+							"        'email',\r",
+							"        'borrowedBooks',\r",
+							"        \"__v\"\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request and response ids are equal\", function() {\r",
+							"    const urlIdPart = pm.request.url.path;\r",
+							"    const requestedVisitorId = urlIdPart[urlIdPart.length - 1];\r",
+							"\r",
+							"    const responseVisitorId = pm.response.json()._id;\r",
+							"\r",
+							"    pm.expect(requestedVisitorId).to.equal(responseVisitorId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/visitors/{{visitorId}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"visitors",
+						"{{visitorId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Просмотреть данные книги по её id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response contains the object with required fields\", function() {\r",
+							"    const book = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(book).to.have.all.keys(\r",
+							"        '_id',\r",
+							"        'title',\r",
+							"        'author',\r",
+							"        'year',\r",
+							"        'isAvailable',\r",
+							"        \"__v\"\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request and response ids are equal\", function() {\r",
+							"    const urlIdPart = pm.request.url.path;\r",
+							"    const requestedBookId = urlIdPart[urlIdPart.length - 1];\r",
+							"\r",
+							"    const responseBookId = pm.response.json()._id;\r",
+							"\r",
+							"    pm.expect(requestedBookId).to.equal(responseBookId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/books/{{bookId}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"books",
+						"{{bookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Добавление нового посетителя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response contains the object with required fields\", function() {\r",
+							"    const newVisitor = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(newVisitor).to.have.all.keys(\r",
+							"        '_id',\r",
+							"        'name',\r",
+							"        'surname',\r",
+							"        'email',\r",
+							"        'borrowedBooks',\r",
+							"        \"__v\"\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response matches request data\", function() {\r",
+							"    const requestBody = JSON.parse(pm.request.body.raw);\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.name).to.equal(requestBody.name);\r",
+							"    pm.expect(responseData.surname).to.equal(requestBody.surname);\r",
+							"    pm.expect(responseData.email).to.equal(requestBody.email);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The request body has required fields\", function() {\r",
+							"    const requestData = JSON.parse(pm.request.body.raw);\r",
+							"    \r",
+							"    pm.expect(requestData).to.have.keys([\r",
+							"        'name',\r",
+							"        'surname',\r",
+							"        'email'\r",
+							"    ]);\r",
+							"    \r",
+							"    pm.expect(requestData.name).to.not.be.empty;\r",
+							"    pm.expect(requestData.surname).to.not.be.empty;\r",
+							"    pm.expect(requestData.email).to.not.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Browne\",\r\n    \"email\": \"john@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/visitors/new-member",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"visitors",
+						"new-member"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Добавление новой книги",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response contains the object with required fields\", function() {\r",
+							"    const newVisitor = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(newVisitor).to.have.all.keys(\r",
+							"        '_id',\r",
+							"        'title',\r",
+							"        'author',\r",
+							"        'year',\r",
+							"        'isAvailable',\r",
+							"        \"__v\"\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response matches request data\", function() {\r",
+							"    const requestBody = JSON.parse(pm.request.body.raw);\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.title).to.equal(requestBody.title);\r",
+							"    pm.expect(responseData.author).to.equal(requestBody.author);\r",
+							"    pm.expect(responseData.year).to.equal(requestBody.year);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The request body has required fields\", function() {\r",
+							"    const requestData = JSON.parse(pm.request.body.raw);\r",
+							"    \r",
+							"    pm.expect(requestData).to.have.keys([\r",
+							"        'title',\r",
+							"        'author',\r",
+							"        'year'\r",
+							"    ]);\r",
+							"    \r",
+							"    pm.expect(requestData.title).to.not.be.empty;\r",
+							"    pm.expect(requestData.author).to.not.be.empty;\r",
+							"    pm.expect(requestData.year).to.not.be.NaN;\r",
+							"    pm.expect(requestData.year).to.be.above(0);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"War and Peace\",\r\n    \"author\": \"Leo Tolstoy\",\r\n    \"year\": 1869\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/books/new-item",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"books",
+						"new-item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Изменить данные посетителя по его id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response contains the object with required fields\", function() {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.have.all.keys(\r",
+							"        '_id',\r",
+							"        'name',\r",
+							"        'surname',\r",
+							"        'email',\r",
+							"        'borrowedBooks',\r",
+							"        '__v',\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request and response ids are equal\", function() {\r",
+							"    const urlIdPart = pm.request.url.path;\r",
+							"    const requestedVisitorId = urlIdPart[urlIdPart.length - 1];\r",
+							"\r",
+							"    const responseVisitorId = pm.response.json()._id;\r",
+							"\r",
+							"    pm.expect(requestedVisitorId).to.equal(responseVisitorId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jackson\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/modification/visitors/{{visitorId}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"modification",
+						"visitors",
+						"{{visitorId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Изменить данные книги по её id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response contains the object with required fields\", function() {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.have.all.keys(\r",
+							"        '_id',\r",
+							"        'title',\r",
+							"        'author',\r",
+							"        'year',\r",
+							"        'isAvailable',\r",
+							"        \"__v\"\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Request and response ids are equal\", function() {\r",
+							"    const urlIdPart = pm.request.url.path;\r",
+							"    const requestedBookId = urlIdPart[urlIdPart.length - 1];\r",
+							"\r",
+							"    const responseBookId = pm.response.json()._id;\r",
+							"\r",
+							"    pm.expect(requestedBookId).to.equal(responseBookId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"2077\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/modification/books/{{bookId}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"modification",
+						"books",
+						"{{bookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление посетителя из списков библиотеки",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Посетитель успешно удалён\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"text/html; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Visitor is actually deleted\", function() {\r",
+							"    const url = pm.environment.get(\"api_url\") + '/visitors'\r",
+							"\r",
+							"    const urlIdPart = pm.request.url.path;\r",
+							"    const deletedVisitorId = urlIdPart[urlIdPart.length - 1];\r",
+							"\r",
+							"    if (pm.response.code === 200) {\r",
+							"        pm.sendRequest({url, method: 'GET'}, function (err, visitorsResponse) {\r",
+							"            if (err) {\r",
+							"                pm.test(\"Request failed\", () => pm.expect.fail(err.message));\r",
+							"                return;\r",
+							"            }\r",
+							"\r",
+							"            const visitorsData = visitorsResponse.json().find((visitor) => visitor._id === deletedVisitorId);\r",
+							"            pm.expect(visitorsData).to.be.undefined;\r",
+							"        });\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/removal/visitors/68a3778f94afcd35dce4cebd",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"removal",
+						"visitors",
+						"68a3778f94afcd35dce4cebd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление книги из списков библиотеки",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Книга успешно удалёна\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"text/html; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Book is actually deleted\", function() {\r",
+							"    const url = pm.environment.get(\"api_url\") + '/books'\r",
+							"\r",
+							"    const urlIdPart = pm.request.url.path;\r",
+							"    const deletedBookId = urlIdPart[urlIdPart.length - 1];\r",
+							"\r",
+							"    if (pm.response.code === 200) {\r",
+							"        pm.sendRequest({url, method: 'GET'}, function (err, booksResponse) {\r",
+							"            if (err) {\r",
+							"                pm.test(\"Request failed\", () => pm.expect.fail(err.message));\r",
+							"                return;\r",
+							"            }\r",
+							"\r",
+							"            const booksData = booksResponse.json().find((book) => book._id === deletedBookId);\r",
+							"            pm.expect(booksData).to.be.undefined;\r",
+							"        });\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/removal/books/68a39263d3778e4cb4a693ff",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"removal",
+						"books",
+						"68a39263d3778e4cb4a693ff"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
