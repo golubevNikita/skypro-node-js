@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "1984",
+    "author": "George Orwell",
+    "year": 1949,
+    "isAvailable": true
+  },
+  {
+    "id": 2,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "year": 1932,
+    "isAvailable": true
+  },
+  {
+    "id": 3,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "year": 1925,
+    "isAvailable": true
+  },
+  {
+    "id": 4,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "year": 1960,
+    "isAvailable": true
+  },
+  {
+    "id": 5,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "year": 1813,
+    "isAvailable": true
+  },
+  {
+    "id": 6,
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "year": 1951,
+    "isAvailable": true
+  },
+  {
+    "id": 7,
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "year": 1937,
+    "isAvailable": true
+  },
+  {
+    "id": 8,
+    "title": "Fahrenheit 451",
+    "author": "Ray Bradbury",
+    "year": 1953,
+    "isAvailable": true
+  },
+  {
+    "id": 9,
+    "title": "Moby-Dick",
+    "author": "Herman Melville",
+    "year": 1851,
+    "isAvailable": true
+  },
+  {
+    "id": 10,
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "year": 1869,
+    "isAvailable": true
+  }
+]
