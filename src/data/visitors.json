@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Иван",
+    "surname": "Иванов",
+    "email": "ivan@example.com",
+    "borrowedBooks": []
+  },
+  {
+    "id": 2,
+    "name": "Петр",
+    "surname": "Петров",
+    "email": "petr@example.com",
+    "borrowedBooks": []
+  },
+  {
+    "id": 3,
+    "name": "Анна",
+    "surname": "Сидорова",
+    "email": "anna@example.com",
+    "borrowedBooks": []
+  },
+  {
+    "id": 4,
+    "name": "Мария",
+    "surname": "Кузнецова",
+    "email": "maria@example.com",
+    "borrowedBooks": []
+  },
+  {
+    "id": 5,
+    "name": "Алексей",
+    "surname": "Смирнов",
+    "email": "alex@example.com",
+    "borrowedBooks": []
+  }
+]

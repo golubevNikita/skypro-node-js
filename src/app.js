@@ -1,92 +1,49 @@
-const http = require("http");
-const getUsers = require("./modules/users");
-const capitalize = require("./modules/capitalize");
+const express = require("express");
+const dotenv = require("dotenv");
+const bodyparser = require("body-parser");
+const mongoose = require("mongoose");
 
-const server = http.createServer((request, response) => {
-  const usersObj = JSON.parse(getUsers().toString("utf-8"));
+const visitorsRouter = require("./routes/visitors");
+const booksRouter = require("./routes/books");
 
-  const localhost = "http://127.0.0.1";
-  const url = new URL(request.url, localhost);
+const loggerRequestUrl = require("./middlewares/loggerRequestUrl");
+const cors = require("./middlewares/cors");
 
-  const usersParameter = url.searchParams.get("users");
-  const userNameParameter = url.searchParams.get("hello");
+dotenv.config();
 
-  if (request.url === "/") {
-    response.statusCode = 200;
-    response.statusMessage = "OK";
-    response.header = "Content-Type: text/plain";
-    response.write("Hello, world");
-    response.end();
+const {
+  PORT = 3005,
+  API_URL = "http://127.0.0.1",
+  MONGODB_URL = "mongodb://localhost:27017/skypro-node-js",
+} = process.env;
 
-    return;
-  }
+mongoose
+  .connect(MONGODB_URL)
+  .then(() => {
+    console.log("Connected to mongoDB");
+  })
+  .catch((error) => {
+    throw error;
+  });
 
-  if (usersParameter === "") {
-    response.statusCode = 200;
-    response.statusMessage = "OK";
-    response.header = "Content-Type: application/json";
-    response.write(getUsers());
-    response.end();
+const app = express();
 
-    return;
-  }
+app.use(cors);
+app.use(loggerRequestUrl);
+app.use(bodyparser.json());
 
-  if (userNameParameter === "") {
-    response.statusCode = 400;
-    response.statusMessage = "FALSE";
-    response.header = "Content-Type: text/plain";
-    response.write("Enter a name");
-    response.end();
+app.use(visitorsRouter);
+app.use(booksRouter);
 
-    return;
-  }
-
-  if (userNameParameter) {
-    const searchedUser = usersObj.filter(
-      (user) => user.name.toLowerCase() === userNameParameter.toLowerCase()
-    );
-
-    if (searchedUser.length) {
-      response.statusCode = 200;
-      response.statusMessage = "OK";
-
-      const searchedIdOrIds = searchedUser.map((user) => user.id);
-
-      let finalGreetings = `Hello, ${capitalize(userNameParameter)}`;
-
-      searchedUser.length > 1
-        ? (finalGreetings = `${finalGreetings} (users ids: ${searchedIdOrIds.join(
-            ", "
-          )})`)
-        : (finalGreetings = `${finalGreetings} (${searchedUser[0].id})`);
-
-      response.header = "Content-Type: text/plain";
-      response.write(finalGreetings);
-      response.end();
-
-      return;
-    } else {
-      response.statusCode = 400;
-      response.statusMessage = "FALSE";
-      response.header = "Content-Type: text/plain";
-      response.write("Name is not exist");
-      response.end();
-
-      return;
-    }
-  } else {
-    response.statusCode = 500;
-    response.statusMessage = "FALSE";
-    response.header = "Content-Type: text/plain";
-    response.write("");
-    response.end();
-
-    return;
-  }
+app.use((request, response) => {
+  response.status(404).send("Страница не найдена");
 });
 
-const port = 3003;
+app.use((error, request, response) => {
+  console.error(error.message);
+  response.status(500).send("Что-то сломалось!");
+});
 
-server.listen(port, () => {
-  console.log(`Сервер запущен, url: http://127.0.0.1:${port}/`);
+app.listen(PORT, () => {
+  console.log(`Сервер запущен, url: ${API_URL}:${PORT}/`);
 });
